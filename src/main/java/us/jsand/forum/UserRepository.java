@@ -23,4 +23,10 @@ public class UserRepository {
     public User get(Long id) {
         return users.get(id);
     }
+
+    public boolean delete(Long userId) {
+        User removed = users.remove(userId);
+
+        return removed != null;
+    }
 }
