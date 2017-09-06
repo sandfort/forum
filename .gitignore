@@ -1,2 +1,7 @@
 target/
+.idea/
 *.class
+/forum-core/src/main/main.iml
+/forum-core/src/test/test.iml
+/forum-core/.idea/
+/forum-core/forum-core.iml
