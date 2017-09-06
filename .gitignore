@@ -1,7 +1,5 @@
-target/
 .idea/
-*.class
-/forum-core/src/main/main.iml
-/forum-core/src/test/test.iml
-/forum-core/.idea/
-/forum-core/forum-core.iml
+target/
+/forum.iml
+/src/main/main.iml
+/src/test/test.iml

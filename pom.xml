@@ -6,7 +6,7 @@
   </properties>
   <modelVersion>4.0.0</modelVersion>
   <groupId>us.jsand.forum</groupId>
-  <artifactId>forum-core</artifactId>
+  <artifactId>forum</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>forum-core</name>
