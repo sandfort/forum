@@ -1,6 +1,5 @@
 package us.jsand.forum;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
