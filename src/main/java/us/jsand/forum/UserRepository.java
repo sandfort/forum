@@ -29,4 +29,8 @@ public class UserRepository {
 
         return removed != null;
     }
+
+    public boolean exists(Long id) {
+        return users.containsKey(id);
+    }
 }

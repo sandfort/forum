@@ -11,24 +11,22 @@ import static org.junit.Assert.assertTrue;
 
 public class ThreadRepositoryTest {
     ThreadRepository repo;
-    User user;
 
     @Before
     public void setUp() {
         this.repo = new ThreadRepository();
-        this.user = new User("user-name");
     }
 
     @Test
     public void save_givenNewThread_returnsCreatedThread() {
-        Thread thread = new Thread("thread-title", user);
+        Thread thread = new Thread("thread-title");
 
         assertTrue(repo.save(thread).getId() != null);
     }
 
     @Test
     public void save_givenExistingThread_returnsUpdatedThread() {
-        Thread thread = new Thread("thread-title", user);
+        Thread thread = new Thread("thread-title");
         Thread created = repo.save(thread);
         created.setTitle("new-thread-title");
         Thread updated = repo.save(thread);
@@ -39,9 +37,9 @@ public class ThreadRepositoryTest {
 
     @Test
     public void findOne_givenExistingThreadId_returnsThread() {
-        Thread t1 = repo.save(new Thread("first-thread", user));
-        Thread t2 = repo.save(new Thread("second-thread", user));
-        Thread t3 = repo.save(new Thread("third-thread", user));
+        Thread t1 = repo.save(new Thread("first-thread"));
+        Thread t2 = repo.save(new Thread("second-thread"));
+        Thread t3 = repo.save(new Thread("third-thread"));
 
         assertThat(repo.findOne(t1.getId()), equalTo(t1));
         assertThat(repo.findOne(t2.getId()), equalTo(t2));
@@ -50,9 +48,9 @@ public class ThreadRepositoryTest {
 
     @Test
     public void findAll_returnsAllThreads() {
-        Thread t1 = repo.save(new Thread("first-thread", user));
-        Thread t2 = repo.save(new Thread("second-thread", user));
-        Thread t3 = repo.save(new Thread("third-thread", user));
+        Thread t1 = repo.save(new Thread("first-thread"));
+        Thread t2 = repo.save(new Thread("second-thread"));
+        Thread t3 = repo.save(new Thread("third-thread"));
 
         assertThat(repo.findAll(), containsInAnyOrder(t1, t2, t3));
     }
@@ -60,17 +58,17 @@ public class ThreadRepositoryTest {
     @Test
     public void count_returnsNumberOfThreadsInRepository() {
         assertThat(repo.count(), equalTo(0L));
-        repo.save(new Thread("first-thread", user));
+        repo.save(new Thread("first-thread"));
         assertThat(repo.count(), equalTo(1L));
-        repo.save(new Thread("second-thread", user));
+        repo.save(new Thread("second-thread"));
         assertThat(repo.count(), equalTo(2L));
-        repo.save(new Thread("third-thread", user));
+        repo.save(new Thread("third-thread"));
         assertThat(repo.count(), equalTo(3L));
     }
 
     @Test
     public void delete_removesThreadFromRepository() {
-        Thread thread = new Thread("thread-title", user);
+        Thread thread = new Thread("thread-title");
         Thread saved = repo.save(thread);
 
         repo.delete(saved.getId());
@@ -80,7 +78,7 @@ public class ThreadRepositoryTest {
 
     @Test
     public void exists_givenExistantThreadId_returnsTrue() {
-        Thread thread = new Thread("thread-title", user);
+        Thread thread = new Thread("thread-title");
         Thread saved = repo.save(thread);
 
         assertThat(repo.exists(saved.getId()), equalTo(true));

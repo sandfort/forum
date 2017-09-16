@@ -44,4 +44,16 @@ public class UserRepositoryTest {
         assertTrue(result);
         assertNull(repo.findOne(userId));
     }
+
+    @Test
+    public void exists_givenNewUserId_returnsFalse() {
+        assertFalse(repo.exists(75L));
+    }
+
+    @Test
+    public void exists_givenExistingUserId_returnsTrue() {
+        User user = repo.save(new User("user name"));
+
+        assertTrue(repo.exists(user.getId()));
+    }
 }

@@ -5,9 +5,8 @@ public class Thread {
     private String title;
     private User originalPoster;
 
-    public Thread(String title, User originalPoster) {
+    public Thread(String title) {
         this.title = title;
-        this.originalPoster = originalPoster;
     }
 
     public Long getId() {
@@ -28,5 +27,9 @@ public class Thread {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setOriginalPoster(User originalPoster) {
+        this.originalPoster = originalPoster;
     }
 }
