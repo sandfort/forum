@@ -3,6 +3,7 @@ package us.jsand.forum;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.*;
 
 public class UserRepositoryTest {
@@ -17,7 +18,7 @@ public class UserRepositoryTest {
     public void save_givenNewUser_returnsCreatedUserWithId() {
         User created = repo.save(new User("user-name"));
 
-        assertTrue(created.getId() != null);
+        assertNotNull(created.getId());
     }
 
     @Test
@@ -30,7 +31,7 @@ public class UserRepositoryTest {
 
         User received = repo.findOne(user1Id);
 
-        assertEquals(user1.getName(), received.getName());
+        assertThat(received.getName(), equalTo(user1.getName()));
     }
 
     @Test
@@ -41,6 +42,6 @@ public class UserRepositoryTest {
         boolean result = repo.delete(userId);
 
         assertTrue(result);
-        assertTrue(repo.findOne(userId) == null);
+        assertNull(repo.findOne(userId));
     }
 }
