@@ -14,21 +14,21 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void create_returnsCreatedUserWithId() {
-        User created = repo.create(new User("user-name"));
+    public void save_givenNewUser_returnsCreatedUserWithId() {
+        User created = repo.save(new User("user-name"));
 
         assertTrue(created.getId() != null);
     }
 
     @Test
-    public void get_returnsUser() {
+    public void findOne_givenExistingUserId_returnsUser() {
         User user1 = new User("user 1");
         User user2 = new User("user 2");
 
-        Long user1Id = repo.create(user1).getId();
-        repo.create(user2);
+        Long user1Id = repo.save(user1).getId();
+        repo.save(user2);
 
-        User received = repo.get(user1Id);
+        User received = repo.findOne(user1Id);
 
         assertEquals(user1.getName(), received.getName());
     }
@@ -36,16 +36,11 @@ public class UserRepositoryTest {
     @Test
     public void delete_removesUser() {
         User user = new User("user-name");
-        Long userId = repo.create(user).getId();
+        Long userId = repo.save(user).getId();
 
         boolean result = repo.delete(userId);
 
         assertTrue(result);
-        assertTrue(repo.get(userId) == null);
-    }
-
-    @Test
-    public void delete_ifUserDoesNotExist_returnsFalse() {
-        assertFalse(repo.delete(7L));
+        assertTrue(repo.findOne(userId) == null);
     }
 }

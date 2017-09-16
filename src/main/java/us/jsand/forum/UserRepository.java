@@ -12,7 +12,7 @@ public class UserRepository {
         this.sequence = 0L;
     }
 
-    public User create(User user) {
+    public User save(User user) {
         user.setId(sequence++);
 
         users.put(user.getId(), user);
@@ -20,7 +20,7 @@ public class UserRepository {
         return user;
     }
 
-    public User get(Long id) {
+    public User findOne(Long id) {
         return users.get(id);
     }
 
